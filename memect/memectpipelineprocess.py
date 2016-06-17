@@ -36,6 +36,7 @@ class MemectPipelineProcess(object):
 
 		if (item['keywords'] is not None) :
 			kws = item['keywords']
+			item['keywords'] = ''
 			for kw in kws:
 				if (kw is not None) :
 					item['keywords'] = item['keywords'] + ' ' + kw
