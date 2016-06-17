@@ -1,3 +1,4 @@
+use memect;
 truncate ml_memect;
 truncate py_memect;
 truncate bd_memect;
