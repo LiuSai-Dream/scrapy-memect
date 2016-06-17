@@ -5,3 +5,4 @@ truncate bd_memect;
 truncate app_memect;
 truncate web_memect;
 truncate sha1url;
+drop database memect;
