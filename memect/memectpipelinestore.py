@@ -64,17 +64,17 @@ class MemectPipelineStore(object):
 		# Inserting item into database as  one row
 					
 		if item['site_type'] == ML :
-			insert_statement = """INSERT INTO ml_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s') """ % (item['author_name'], item['author_img_url'], item['author_page_url'], item['pub_time'], item['keywords'], item['content_text'], item['content_page_url'], item['content_img_url'] )
+			insert_statement = """INSERT INTO ml_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) """ 
 		elif item['site_type'] == PY:
-			insert_statement = """INSERT INTO py_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s') """ % (item['author_name'], item['author_img_url'], item['author_page_url'], item['pub_time'], item['keywords'], item['content_text'], item['content_page_url'], item['content_img_url'] )
+			insert_statement = """INSERT INTO py_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) """ 
 		elif item['site_type'] == WEB:
-			insert_statement = """INSERT INTO web_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s') """ % (item['author_name'], item['author_img_url'], item['author_page_url'], item['pub_time'], item['keywords'], item['content_text'], item['content_page_url'], item['content_img_url'] )
+			insert_statement = """INSERT INTO web_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) """ 
 		elif item['site_type'] == BD:
-			insert_statement = """INSERT INTO bd_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s') """ % (item['author_name'], item['author_img_url'], item['author_page_url'], item['pub_time'], item['keywords'], item['content_text'], item['content_page_url'], item['content_img_url'] )
+			insert_statement = """INSERT INTO bd_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) """ 
 		elif item['site_type'] == APP:
-			insert_statement = """INSERT INTO app_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s') """ % (item['author_name'], item['author_img_url'], item['author_page_url'], item['pub_time'], item['keywords'], item['content_text'], item['content_page_url'], item['content_img_url'] )
-		try:			
-			self.cur.execute(insert_statement )
+			insert_statement = """INSERT INTO app_memect ( author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) """ 
+		try:
+			self.cur.execute(insert_statement, (item['author_name'], item['author_img_url'], item['author_page_url'], item['pub_time'], item['keywords'], item['content_text'], item['content_page_url'], item['content_img_url'] ))
 			self.conn.commit()
 			logger.debug("---------------------------------Inserting item to table memect successfully---------------------------------")
 		except MySQLdb.Error, e:
