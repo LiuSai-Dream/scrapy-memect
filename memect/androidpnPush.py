@@ -93,7 +93,7 @@ class MemectMysql():
             self.conn = MySQLdb.connect(user = self.user, passwd = self.passwd, db = self.dbname, host = self.host , charset = self.charset, use_unicode = self.use_unicode)
     		
             # All operations are performed in the cursor
-            self.cur = conn.cursor()
+            self.cur = self.conn.cursor()
             logger.debug('Connecting to database successfully')
         except :
             if (self.conn):
@@ -106,7 +106,7 @@ class MemectMysql():
         results = []
             
         for table in tables:
-            resultNum = cur.execute(query, (table, self.curDate))
+            resultNum = self.cur.execute(query, (table, self.curDate))
             if (resultNum != 0):
                 result = self.cur.fetchAll()
                 print(result)
@@ -122,10 +122,6 @@ class MemectMysql():
         
 def main():
     mm = MemectMysql()
-    logger.error("user "+ mm.user)
-    logger.error("passwd "+ mm.passwd)
-    logger.error("db "+ mm.dbname)
-    logger.error("host "+ mm.host)
     try:    
         mm.connect()
         results = mm.query() 
