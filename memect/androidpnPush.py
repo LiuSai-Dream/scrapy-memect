@@ -58,7 +58,7 @@ class Notification():
         self.driver = webdriver.PhantomJS('phantomjs')
         self.driver.get(self.url)
         
-        self.setNotification(sl.get(1), sl.get(6), sl.get(7))
+        self.setNotification(str(sl.get(1)), str(sl.get(6)), str(sl.get(7)))
         self.send()
 
 
@@ -113,7 +113,7 @@ class MemectMysql():
                 if (resultNum != 0):
                     result = self.cur.fetchall()
                     results.append(list(result))
-                    logger.error("Result is " + str(list(result)))
+                    print("Result is " + str(list(result)))
                 else:
                     logger.warn("No data in table " + table)
         except MySQLdb.Error as e:
