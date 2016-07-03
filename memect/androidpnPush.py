@@ -110,14 +110,14 @@ class MemectMysql():
 
                 resultNum = self.cur.execute(query)
                 if (resultNum != 0):
-                    result = self.cur.fetchAll()
+                    result = self.cur.fetchall()
                     results.append(result)
                 else:
                     logger.warn("No data in table " + table)
         except MySQLdb.Error as e:
-            logger.error("1 Fail to query; " + str(e))
+            logger.error("Fail to query; " + str(e))
         except Exception as e:
-            logger.error("2 Fail to query; " + str(e))
+            logger.error("Other " + str(e))
         return results
     
     def close(self):
