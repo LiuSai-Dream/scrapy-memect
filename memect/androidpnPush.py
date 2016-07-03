@@ -107,7 +107,7 @@ class MemectMysql():
         
         try:
             for table in tables:
-                resultNum = self.cur.execute("SELECT * FROM %s WHERE pub_time LIKE %s",("ml_memect","2016-06-30%"))
+                resultNum = self.cur.execute("SELECT * FROM ml_memect WHERE pub_time LIKE '2016-06-30%'")
                 if (resultNum != 0):
                     result = self.cur.fetchAll()
                     results.append(result)
