@@ -182,7 +182,7 @@ class MlmemectSpider(CrawlSpider):
 			for kw in kws:
 				item['keywords'] .append(kw.xpath('text()').extract_first())
 
-			content_page_url
+			
 			# Getting @{content_text}
 			try :
 				content_text = thread.xpath('.//div[contains(@class, "text")]/text()').extract_first()                       
