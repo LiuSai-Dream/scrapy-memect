@@ -13,6 +13,7 @@ import MySQLdb
 import gc
 import random
 
+logging.basicConfig()
 logger = logging.getLogger(__name__)
 
 class Notification():
