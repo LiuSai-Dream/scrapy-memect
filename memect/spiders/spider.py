@@ -55,7 +55,7 @@ class MlmemectSpider(CrawlSpider):
 
 			gapDates = self.getRangeDate(startDate, endDate)
 			for gapDate in gapDates:
-				yield FormRequest(url + gapDate, callback = self.parse)
+				yield FormRequest(url + gapDate, callback = self.parse_content)
 
 
 	def parse(self, response):
@@ -132,7 +132,16 @@ class MlmemectSpider(CrawlSpider):
 			logger.error(".........Error: Fail to fetch url!  " + response.url +".........")
 			return
 
-		siteType = response.meta['siteType']
+		if 'ml' in response.request.url:
+			siteType = ML
+		elif 'py' in response.request.url:
+			siteType = PY
+		elif 'app' in response.request.url:
+			siteType = APP
+		elif 'bd' in response.request.url:
+			siteType = BD
+		elif 'web' in response.request.url:
+			siteType = WEB
 
 		# Getting the date, for selecting thread next
 		curDate = response.xpath('//body//span[contains(@id, "date")]/text()').extract_first()
