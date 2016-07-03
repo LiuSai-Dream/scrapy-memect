@@ -13,7 +13,7 @@ import MySQLdb
 import gc
 import random
 
-logging.basicConfig(filename="androidpn.log")
+logging.basicConfig(filename="androidpn.log", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 class Notification():
