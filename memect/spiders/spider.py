@@ -16,9 +16,7 @@ class MlmemectSpider(CrawlSpider):
 	name = "memect"
 	allow_domain = ['ml.memect.com/', 'py.memect.com/', 'web.memect.com/', 'bd.memect.com/', 'app.memect.com/']
 	start_urls = ['http://ml.memect.com/', 'http://py.memect.com/', 'http://web.memect.com/', 'http://bd.memect.com/', 'http://app.memect.com/']
-	crawl_date = None
-	crawl_date_file = "crawl_date.pkl"
-
+	
 
 	# Instance varibales
 	def __init__(self):
@@ -27,6 +25,9 @@ class MlmemectSpider(CrawlSpider):
 		self.keywords = "keywords"
 		self.content_text = "text"
 		self.content_img_url = "original_pic"
+		
+		self.crawl_date = None
+		self.crawl_date_file = "crawl_date.pkl"
 		self.getPickleDate()
 
 
@@ -53,48 +54,46 @@ class MlmemectSpider(CrawlSpider):
 
 
 	def getPickleDate(self):
-		global crawl_date
 		try:
-			with open(crawl_date_file, "rb") as handle:
-				crawl_date = pickle.load(handle)
-			logger.debug(".........Loading pickfile " + crawl_date_file + " successfully !  " + crawl_date + ".........")
+			with open(self.crawl_date_file, "rb") as handle:
+				self.crawl_date = pickle.load(handle)
+			logger.debug(".........Loading pickfile " + self.crawl_date_file + " successfully !  " + self.crawl_date + ".........")
 		except:
-			crawl_date = {ML:"2016-06-13", PY:"2016-06-13", ML:"2016-06-13", BD:"2016-06-13", APP:"2016-06-13"}
-			logger.error(".........Error: loading pickfile " + crawl_date_file + "; use default date.........")
+			self.crawl_date = {ML:"2016-06-13", PY:"2016-06-13", ML:"2016-06-13", BD:"2016-06-13", APP:"2016-06-13"}
+			logger.error(".........Error: loading pickfile " + self.crawl_date_file + "; use default date.........")
 	
 
 	def savePickleDate(self):
 		try:
-			with open(crawl_date_file, "wb") as handle:
-				pickle.dump(crawl_date, handle)
-			logger.debug(".........Dumping pickfile " + crawl_date_file + " successfully !  " + crawl_date + ".........")
+			with open(self.crawl_date_file, "wb") as handle:
+				pickle.dump(self.crawl_date, handle)
+			logger.debug(".........Dumping pickfile " + self.crawl_date_file + " successfully !  " + self.crawl_date + ".........")
 		except:
-			logger.error(".........Error: dumping pickfile " + crawl_date_file + ".........")
+			logger.error(".........Error: dumping pickfile " + self.crawl_date_file + ".........")
 
 
 	def need_crawl(self, siteType, curDate):
 		ret = False
-		global crawl_date
 		if siteType == ML :
 			if crawl_date[ML] > curDate:
 				ret = True 
-				crawl_date[ML] = curDate
+				self.crawl_date[ML] = curDate
 		elif siteType == PY:
 			if crawl_date[PY] > curDate:
 				ret = True
-				crawl_date[PY] = curDate
+				self.crawl_date[PY] = curDate
 		elif siteType == WEB:
 			if crawl_date[WEB] > curDate:
 				ret = True
-				crawl_date[WEB] = curDate
+				self.crawl_date[WEB] = curDate
 		elif siteType == BD:
 			if crawl_date[BD] > curDate:
 				ret = True
-				crawl_date[BD] = curDate
+				self.crawl_date[BD] = curDate
 		elif siteType == APP:
 			if crawl_date[APP] > curDate:
 				ret = True
-				crawl_date[APP] = curDate
+				self.crawl_date[APP] = curDate
 		if ret:
 			self.savePickleDate()
 		return ret
