@@ -39,7 +39,7 @@ class MlmemectSpider(CrawlSpider):
 	def start_requests(self):
 		endDate = datetime.now().date()
 		startDate = None
-		for url in start_urls:
+		for url in self.start_urls:
 			if 'ml' in url:
 				datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
 			elif 'py' in url:
