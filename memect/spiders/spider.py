@@ -25,7 +25,7 @@ class MlmemectSpider(CrawlSpider):
 		self.keywords = "keywords"
 		self.content_text = "text"
 		self.content_img_url = "original_pic"
-		
+
 		self.crawl_date = None
 		self.crawl_date_file = "crawl_date.pkl"
 		self.getPickleDate()
@@ -46,8 +46,9 @@ class MlmemectSpider(CrawlSpider):
 			siteType = APP
 
 		if (response.status == 200):
-			for link in response.xpath("//a[contains(@href,'long')]/@href").extract()[::-1]:
+			for link in response.xpath("//a[contains(@href,'long')]/@href").extract():
 				yield Request(url = link, callback = self.parse_content, meta = {'siteType' : siteType})
+		#   for link in response.xpath("//a[contains(@href,'long')]/@href").extract()[::-1]
 		#	yield Request(url = response.xpath("//a[contains(@href, 'long')]/@href").extract_first(), callback = self.parse_content)
 		else:
 			logger.error(".........Error: Fail to fetch " + response.url + ".........")
