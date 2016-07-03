@@ -123,7 +123,7 @@ def main():
     try:    
         mm.connect()
         results = mm.query() 
-    except Exxception:
+    except Exception:
         logger.error("Error: Fail to connect mysql!")
         return
     finally:

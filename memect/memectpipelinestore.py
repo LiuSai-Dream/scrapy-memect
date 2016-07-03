@@ -76,13 +76,13 @@ class MemectPipelineStore(object):
 		try:
 			self.cur.execute(insert_statement, (item['author_name'], item['author_img_url'], item['author_page_url'], item['pub_time'], item['keywords'], item['content_text'], item['content_page_url'], item['content_img_url'] ))
 			self.conn.commit()
-			logger.debug("---------------------------------Inserting item to table memect successfully---------------------------------")
+			logger.debug(".........Inserting item to table memect successfully.........")
 		except MySQLdb.Error, e:
 			try:
        				 print ("MySQL Error [%d]: %s" % (e.args[0], e.args[1]))
     			except IndexError:
        				 print ("MySQL Error: %s" % str(e))
-			logger.debug("---------------------------------Fail to insert into table memect!  Exception is " + str(e) + "---------------------------------")
-			logger.debug("--------------------------------- The insert_statement is " + insert_statement + " ---------------------------------")
+			logger.debug(".........Fail to insert into table memect!  Exception is " + str(e) + ".........")
+			logger.debug(".........The insert_statement is " + insert_statement + ".........")
 			self.conn.rollback()
 
