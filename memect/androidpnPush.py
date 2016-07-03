@@ -79,7 +79,7 @@ class MemectMysql():
         self.use_unicode = True
         self.conn = None
         self.cur = None
-        self.curDate = (datetime.now().date() - timedelta(3)).strftime("%Y-%m-%d")
+        self.curDate = (datetime.now().date() - timedelta(2)).strftime("%Y-%m-%d")
         
     def connect(self):
 
@@ -107,7 +107,7 @@ class MemectMysql():
         
         try:
             for table in tables:
-                resultNum = self.cur.execute("SELECT * FROM ml_memect WHERE pub_time LIKE '2016-06-30%'")
+                resultNum = self.cur.execute("SELECT * FROM %s WHERE pub_time LIKE '2016-07-01%'", (table,))
                 if (resultNum != 0):
                     result = self.cur.fetchAll()
                     results.append(result)
