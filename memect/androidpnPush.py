@@ -101,19 +101,22 @@ class MemectMysql():
             raise Exception
 
     def query(self):
-        query = """SELECT (author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) FROM (%s) WHERE pub_time LIKE (%s)"""    
+        query = """SELECT (author_name, author_img_url, author_page_url, pub_time, keywords, content_text, content_page_url,  content_img_url) FROM (%s) WHERE pub_time LIKE ('%s')"""    
         tables = ["ml_memct", "bd_memect", "app_memect", "web_memect", "py_memect"]
         results = []
-            
-        for table in tables:
-            logger.error("Current table " + table + " and date " + self.curDate)
-            logger.error(query)
-            resultNum = self.cur.execute(query, (table, self.curDate))
-            if (resultNum != 0):
-                result = self.cur.fetchAll()
-                logger.error("Result num " + str(resultNum))
-            else:
-                logger.warn("No data in table " + table)
+        
+        try:
+            for table in tables:
+                logger.error("Current table " + table + " and date " + self.curDate)
+                logger.error(query)
+                resultNum = self.cur.execute(query, (table, self.curDate))
+                if (resultNum != 0):
+                    result = self.cur.fetchAll()
+                    logger.error("Result num " + str(resultNum))
+                else:
+                    logger.warn("No data in table " + table)
+        except MySQLdb.Error as e:
+            logger.error("Fail to query; " + str(e))
         return results
     
     def close(self):
