@@ -57,30 +57,7 @@ class MlmemectSpider(CrawlSpider):
 			for gapDate in gapDates:
 				yield FormRequest(url + gapDate, callback = self.parse_content)
 
-
-	def parse(self, response):
-		logger.debug("Parsing " + response.url)
-		siteType = ""
-		if response.url == self.start_urls[0] :
-			siteType = ML
-		elif response.url == self.start_urls[1]:
-			siteType = PY
-		elif response.url == self.start_urls[2]:
-			siteType = WEB
-		elif response.url == self.start_urls[3]:
-			siteType = BD
-		elif response.url == self.start_urls[4]:
-			siteType = APP
-
-		if (response.status == 200):
-			for link in response.xpath("//a[contains(@href,'long')]/@href").extract():
-				yield Request(url = link, callback = self.parse_content, meta = {'siteType' : siteType})
-		#   for link in response.xpath("//a[contains(@href,'long')]/@href").extract()[::-1]
-		#	yield Request(url = response.xpath("//a[contains(@href, 'long')]/@href").extract_first(), callback = self.parse_content)
-		else:
-			logger.error(".........Error: Fail to fetch " + response.url + ".........")
-
-
+	
 	def getPickleDate(self):
 		try:
 			with open(self.crawl_date_file, "rb") as handle:
