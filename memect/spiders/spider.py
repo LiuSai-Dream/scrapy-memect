@@ -55,7 +55,7 @@ class MlmemectSpider(CrawlSpider):
 
 			gapDates = self.getRangeDate(startDate, endDate)
 			for gapDate in gapDates:
-				yield FormRequest(url + gapDate, callback = self.parse_content)
+				yield FormRequest(url + gapDate, callback = self.parse_content, [])
 
 	
 	def getPickleDate(self):
@@ -69,6 +69,8 @@ class MlmemectSpider(CrawlSpider):
 	
 
 	def savePickleDate(self):
+		with open(self.crawl_date_file, "wb") as handle:
+				pickle.dump(self.crawl_date, handle)
 		try:
 			with open(self.crawl_date_file, "wb") as handle:
 				pickle.dump(self.crawl_date, handle)
