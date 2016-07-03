@@ -69,8 +69,6 @@ class MlmemectSpider(CrawlSpider):
 	
 
 	def savePickleDate(self):
-		with open(self.crawl_date_file, "wb") as handle:
-			pickle.dump(self.crawl_date, handle)
 		try:
 			with open(self.crawl_date_file, "wb") as handle:
 				pickle.dump(self.crawl_date, handle)
