@@ -57,7 +57,7 @@ class Notification():
         self.driver = webdriver.PhantomJS('phantomjs')
         self.driver.get(self.url)
         
-        self.setNotification(sl.get(0), sl.get(5), sl.get(6))
+        self.setNotification(sl.get(1), sl.get(6), sl.get(7))
         self.send()
 
 
@@ -101,13 +101,12 @@ class MemectMysql():
             raise Exception
 
     def query(self):
-        query = "SELECT * FROM %s WHERE pub_time LIKE %s"
         tables = ["ml_memect", "bd_memect", "app_memect", "web_memect", "py_memect"]
         results = []
         
         try:
             for table in tables:
-                resultNum = self.cur.execute("SELECT * FROM %s WHERE pub_time LIKE '2016-07-01%'", (table,))
+                resultNum = self.cur.execute("SELECT * FROM " + table + " WHERE pub_time LIKE " + self.curDate + "%")
                 if (resultNum != 0):
                     result = self.cur.fetchAll()
                     results.append(result)
