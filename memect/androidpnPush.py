@@ -23,9 +23,9 @@ class Notification():
        self.driver = None
 
     def setNotification(self, titleText, messageText, uriText):
-        logger.debug("title : "+ titleText)    
-        logger.debug("message : "+ messageText)        
-        logger.debug("uri : "+ uriText) 
+        logger.error("title : "+ titleText)    
+        logger.error("message : "+ messageText)        
+        logger.error("uri : "+ uriText) 
         
         title = self.driver.find_element_by_name("title")
         title.clear()
