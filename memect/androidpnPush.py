@@ -78,7 +78,7 @@ class MemectMysql():
         self.use_unicode = True
         self.conn = None
         self.cur = None
-        self.curDate = datetime.now().date().strftime("%Y-%m-%d") - timedelta(3)()
+        self.curDate = (datetime.now().date() - timedelta(3)).strftime("%Y-%m-%d")
         
     def connect(self):
         try:
