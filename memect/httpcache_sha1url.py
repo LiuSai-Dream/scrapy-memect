@@ -68,8 +68,8 @@ class FilesystemCacheStorage(object):
 
     def map_url_hash(self, url, sha1) :
         try:
-            insert_statement = """INSERT INTO sha1url ( sha1, url) VALUES ('%s', '%s') """ % (sha1, url )
-            self.cur.execute( insert_statement )
+            insert_statement = """INSERT INTO sha1url ( sha1, url) VALUES (%s, %s) """
+            self.cur.execute( insert_statement, (sha1, url ))
             self.conn.commit()
             logger.debug("---------------------------------Inserting item to table sha1url successfully---------------------------------")
         except MySQLdb.Error, e:
