@@ -188,7 +188,7 @@ class MlmemectSpider(CrawlSpider):
 				content_text = thread.xpath('.//div[contains(@class, "text")]/text()').extract_first()                       
 				content_text  = content_text.strip() + " "
 
-		        logger.debug("content_text " + item['content_text'])   
+		        logger.debug("content_text " + content_text)   
 			except AttributeError as e:
 				logger.debug (" .........Exception: parsing content_text; " + str(e)  + ".........")
 			else :
