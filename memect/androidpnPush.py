@@ -75,7 +75,7 @@ class MemectMysql():
         self.passwd = MySqlConfig['passwd']
         self.dbname = MySqlConfig['db']
         self.host = MySqlConfig['host']
-        self.charset = "utf8",
+        self.charset = "utf8"
         self.use_unicode = True
         self.conn = None
         self.cur = None
