@@ -36,22 +36,23 @@ class MlmemectSpider(CrawlSpider):
 		for gap in range(1, int((endDate - startDate).days)):
 			yield (startDate + timedelta(gap)).strftime("%Y-%m-%d")
 
-
-	def make_requests_from_url(self, url):
+	def start_requests(self):
 		endDate = datetime.now().date()
 		startDate = None
-		if 'ml' in url:
-			startDate = datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
-		elif 'py' in url:
-			startDate = datetime.strptime(self.crawl_date[PY], "%Y-%m-%d").date()
-		elif 'app' in url:
-			startDate = datetime.strptime(self.crawl_date[APP], "%Y-%m-%d").date()	
-		elif 'bd' in url:
-			startDate = datetime.strptime(self.crawl_date[BD], "%Y-%m-%d").date()
-		elif 'web' in url:
-			startDate = datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
-		return Request(url + self.getRangeDate(startDate, endDate), dont_filter=True)
-		#    super.make_requests_from_url(url + getRangeDate(startDate, endDate))
+	    for url in start_urls:
+		    if 'ml' in url:
+				startDate = datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
+			elif 'py' in url:
+				startDate = datetime.strptime(self.crawl_date[PY], "%Y-%m-%d").date()
+			elif 'app' in url:
+				startDate = datetime.strptime(self.crawl_date[APP], "%Y-%m-%d").date()	
+			elif 'bd' in url:
+				startDate = datetime.strptime(self.crawl_date[BD], "%Y-%m-%d").date()
+			elif 'web' in url:
+				startDate = datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
+	        
+	        yield FormRequest(url + self.getRangeDate(startDate, endDate), callback = self.parse)
+
 
 	def parse(self, response):
 		logger.debug("Parsing " + response.url)
