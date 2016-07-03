@@ -107,7 +107,7 @@ class MemectMysql():
         
         try:
             for table in tables:
-                resultNum = self.cur.execute(query, (table, self.curDate))
+                resultNum = self.cur.execute(query, (table, self.curDate+"%"))
                 if (resultNum != 0):
                     result = self.cur.fetchAll()
                     results.append(result)
