@@ -106,7 +106,7 @@ class MemectMysql():
         results = []
             
         for table in tables:
-            logger.error("Current table " + table)
+            logger.error("Current table " + table + " and date " + self.curDate)
             logger.error(query)
             resultNum = self.cur.execute(query, (table, self.curDate))
             if (resultNum != 0):
