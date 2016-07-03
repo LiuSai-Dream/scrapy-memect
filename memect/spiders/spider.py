@@ -70,7 +70,7 @@ class MlmemectSpider(CrawlSpider):
 
 	def savePickleDate(self):
 		with open(self.crawl_date_file, "wb") as handle:
-				pickle.dump(self.crawl_date, handle)
+			pickle.dump(self.crawl_date, handle)
 		try:
 			with open(self.crawl_date_file, "wb") as handle:
 				pickle.dump(self.crawl_date, handle)
@@ -133,7 +133,7 @@ class MlmemectSpider(CrawlSpider):
 		# Determine weather to crawl by comparing date
 		if ( not self.need_crawl(siteType, curDate)):
 				logger.debug("Date " + curDate + " need not to crawl!")
-				return
+		return
 
 		# Setting filter date, for xpath selecting next
 		filterDate = "day_" + curDate
