@@ -3,6 +3,8 @@
 
 import logging
 import pickle
+import datetime
+from datetime import timedelta, date
 from scrapy.http import Request
 from scrapy.spiders import CrawlSpider, Rule
 from memect.items import MemectItem
@@ -15,8 +17,8 @@ class MlmemectSpider(CrawlSpider):
 	# Name of  the spider
 	name = "memect"
 	allow_domain = ['ml.memect.com/', 'py.memect.com/', 'web.memect.com/', 'bd.memect.com/', 'app.memect.com/']
-	start_urls = ['http://ml.memect.com/', 'http://py.memect.com/', 'http://web.memect.com/', 'http://bd.memect.com/', 'http://app.memect.com/']
-	
+	# start_urls = ['http://ml.memect.com/', 'http://py.memect.com/', 'http://web.memect.com/', 'http://bd.memect.com/', 'http://app.memect.com/']
+	start_urls = ['http://forum.memect.com/blog/thread/web-', 'http://forum.memect.com/blog/thread/ml-', 'http://forum.memect.com/blog/thread/app-', 'http://forum.memect.com/blog/thread/bd-', 'http://forum.memect.com/blog/thread/py-']
 
 	# Instance varibales
 	def __init__(self):
@@ -30,6 +32,26 @@ class MlmemectSpider(CrawlSpider):
 		self.crawl_date_file = "crawl_date.pkl"
 		self.getPickleDate()
 
+
+	def getRangeDate(self, startDate, endDate):
+		for gap in range(int ((endDate - startDate).days)):
+			yield (startDate + timedelta(gap)).strftime("%Y-%m-%d")
+
+
+	def make_requests_from_url(self, url):
+		endDate = datetime.now().date()
+		startDate = None
+		if 'ml' in url:
+			startDate = datetime.datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
+		elif 'py' in url:
+			startDate = datetime.datetime.strptime(self.crawl_date[PY], "%Y-%m-%d").date()
+		elif 'app' in url:
+			startDate = datetime.datetime.strptime(self.crawl_date[APP], "%Y-%m-%d").date()	
+		elif 'bd' in url:
+			startDate = datetime.datetime.strptime(self.crawl_date[BD], "%Y-%m-%d").date()
+		elif 'web' in url:
+			startDate = datetime.datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
+		yield super.make_requests_from_url(url+getRangeDate(startDate, endDate))
 
 	def parse(self, response):
 		logger.debug("Parsing " + response.url)
