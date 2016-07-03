@@ -112,8 +112,8 @@ class MemectMysql():
                 resultNum = self.cur.execute(query)
                 if (resultNum != 0):
                     result = self.cur.fetchall()
-                    results.append(result)
-                    logger.error("Result is " + result)
+                    results.append(list(result))
+                    logger.error("Result is " + str(list(result)))
                 else:
                     logger.warn("No data in table " + table)
         except MySQLdb.Error as e:
