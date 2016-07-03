@@ -27,7 +27,7 @@ class MlmemectSpider(CrawlSpider):
 		self.keywords = "keywords"
 		self.content_text = "text"
 		self.content_img_url = "original_pic"
-		getPickleDate()
+		self.getPickleDate()
 
 
 	def parse(self, response):
@@ -96,7 +96,7 @@ class MlmemectSpider(CrawlSpider):
 				ret = True
 				crawl_date[APP] = curDate
 		if ret:
-			savePickleDate()
+			self.savePickleDate()
 		return ret
 
 	def parse_content(self, response):
@@ -116,7 +116,7 @@ class MlmemectSpider(CrawlSpider):
 			return
 
 		# Determine weather to crawl by comparing date
-		if ( not need_crawl(siteType, curDate)):
+		if ( not self.need_crawl(siteType, curDate)):
 				logger.debug("Date " + curDate + " need not to crawl!")
 				return
 
