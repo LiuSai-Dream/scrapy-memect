@@ -33,7 +33,7 @@ class MlmemectSpider(CrawlSpider):
 
 
 	def getRangeDate(self, startDate, endDate):
-		for gap in range(int ((endDate - startDate).days)):
+		for gap in range(1, int((endDate - startDate).days)):
 			yield (startDate + timedelta(gap)).strftime("%Y-%m-%d")
 
 
@@ -81,7 +81,7 @@ class MlmemectSpider(CrawlSpider):
 				self.crawl_date = pickle.load(handle)
 			logger.debug(".........Loading pickfile " + self.crawl_date_file + " successfully !  " + self.crawl_date + ".........")
 		except:
-			self.crawl_date = {ML:"2016-06-13", PY:"2016-06-13", ML:"2016-06-13", BD:"2016-06-13", APP:"2016-06-13"}
+			self.crawl_date = {ML:"2016-06-13", PY:"2016-06-13", WEB:"2016-06-13", BD:"2016-06-13", APP:"2016-06-13"}
 			logger.error(".........Error: loading pickfile " + self.crawl_date_file + "; use default date.........")
 	
 
