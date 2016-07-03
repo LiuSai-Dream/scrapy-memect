@@ -50,7 +50,7 @@ class MlmemectSpider(CrawlSpider):
 			startDate = datetime.strptime(self.crawl_date[BD], "%Y-%m-%d").date()
 		elif 'web' in url:
 			startDate = datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
-		return Request(url + getRangeDate(startDate, endDate), dont_filter=True)
+		return Request(url + self.getRangeDate(startDate, endDate), dont_filter=True)
 		#    super.make_requests_from_url(url + getRangeDate(startDate, endDate))
 
 	def parse(self, response):
