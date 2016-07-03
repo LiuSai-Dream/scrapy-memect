@@ -82,10 +82,6 @@ class MemectMysql():
         self.curDate = (datetime.now().date() - timedelta(3)).strftime("%Y-%m-%d")
         
     def connect(self):
-        logger.error("user "+ self.user)
-        logger.error("passwd "+ self.passwd)
-        logger.error("db "+ self.dbname)
-        logger.error("host "+ self.host)
 
         try:
             # Exceptions make it extremely difficult to clean up bu hand.
@@ -98,7 +94,7 @@ class MemectMysql():
     		
             # All operations are performed in the cursor
             self.cur = conn.cursor()
-            logger.debug('Debug: Connecting to database successfully')
+            logger.debug('Connecting to database successfully')
         except :
             if (self.conn):
                 self.conn.close()  
@@ -125,7 +121,11 @@ class MemectMysql():
 
         
 def main():
-    mm = MemectMysql()  
+    mm = MemectMysql()
+    logger.error("user "+ mm.user)
+    logger.error("passwd "+ mm.passwd)
+    logger.error("db "+ mm.dbname)
+    logger.error("host "+ mm.host)
     try:    
         mm.connect()
         results = mm.query() 
