@@ -39,9 +39,9 @@ class MlmemectSpider(CrawlSpider):
 	def start_requests(self):
 		endDate = datetime.now().date()
 		startDate = None
-	    for url in start_urls:
-		    if 'ml' in url:
-				startDate = datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
+		for url in start_urls:
+			if 'ml' in url:
+				datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
 			elif 'py' in url:
 				startDate = datetime.strptime(self.crawl_date[PY], "%Y-%m-%d").date()
 			elif 'app' in url:
@@ -50,8 +50,8 @@ class MlmemectSpider(CrawlSpider):
 				startDate = datetime.strptime(self.crawl_date[BD], "%Y-%m-%d").date()
 			elif 'web' in url:
 				startDate = datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
-	        
-	        yield FormRequest(url + self.getRangeDate(startDate, endDate), callback = self.parse)
+
+			yield FormRequest(url + self.getRangeDate(startDate, endDate), callback = self.parse)
 
 
 	def parse(self, response):
