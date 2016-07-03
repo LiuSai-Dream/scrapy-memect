@@ -4,7 +4,7 @@
 import logging
 import pickle
 from datetime import timedelta, date, datetime
-from scrapy.http import Request
+from scrapy.http import Request, FormRequest
 from scrapy.spiders import CrawlSpider, Rule
 from memect.items import MemectItem
 from memect.constants import *
