@@ -80,23 +80,23 @@ class MlmemectSpider(CrawlSpider):
 	def need_crawl(self, siteType, curDate):
 		ret = False
 		if siteType == ML :
-			if self.crawl_date[ML] > curDate:
+			if self.crawl_date[ML] < curDate:
 				ret = True 
 				self.crawl_date[ML] = curDate
 		elif siteType == PY:
-			if self.crawl_date[PY] > curDate:
+			if self.crawl_date[PY] < curDate:
 				ret = True
 				self.crawl_date[PY] = curDate
 		elif siteType == WEB:
-			if self.crawl_date[WEB] > curDate:
+			if self.crawl_date[WEB] < curDate:
 				ret = True
 				self.crawl_date[WEB] = curDate
 		elif siteType == BD:
-			if self.crawl_date[BD] > curDate:
+			if self.crawl_date[BD] < curDate:
 				ret = True
 				self.crawl_date[BD] = curDate
 		elif siteType == APP:
-			if self.crawl_date[APP] > curDate:
+			if self.crawl_date[APP] < curDate:
 				ret = True
 				self.crawl_date[APP] = curDate
 		if ret:
