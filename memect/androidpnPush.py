@@ -125,6 +125,7 @@ def main():
     mm = MemectMysql()
     try:    
         mm.connect()
+        logger.error("begin to query")
         results = mm.query() 
     except Exception:
         logger.error("Fail to connect or query")
