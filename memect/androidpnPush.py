@@ -12,7 +12,7 @@ import sys
 
 logger = logging.getLogger(__name__)
 
-url = "http://103.253.145.120:8080/notification.do"
+url = "http://127.0.0.1:8080/notification.do"
 
 def setNotification(driver, titleText, messageText, uriText):
     logger.debug("title : "+ titleText)    
@@ -39,7 +39,7 @@ def submitAndClose(driver):
     driver.close()
 
 class safeList(list):
-    def get(self, index, default="没有值"):
+    def get(self, index, default="No Value"):
         try:
             return self.__getitem__(index)
         except IndexError:            
