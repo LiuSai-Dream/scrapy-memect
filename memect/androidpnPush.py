@@ -106,6 +106,7 @@ class MemectMysql():
         
         try:
             for table in tables:
+                logger.error("Query " + "SELECT * FROM " + table + " WHERE pub_time LIKE '" + self.curDate + "%'")
                 resultNum = self.cur.execute("SELECT * FROM " + table + " WHERE pub_time LIKE '" + self.curDate + "%'")
                 if (resultNum != 0):
                     result = self.cur.fetchAll()
