@@ -32,9 +32,9 @@ class MlmemectSpider(CrawlSpider):
 		self.getPickleDate()
 
 
-	def getRangeDate(self, startDate, endDate):
+	def getRangeDate(self, url, startDate, endDate):
 		for gap in range(1, int((endDate - startDate).days)):
-			yield (startDate + timedelta(gap)).strftime("%Y-%m-%d")
+			yield url + (startDate + timedelta(gap)).strftime("%Y-%m-%d")
 
 	def start_requests(self):
 		endDate = datetime.now().date()
@@ -51,7 +51,7 @@ class MlmemectSpider(CrawlSpider):
 			elif 'web' in url:
 				startDate = datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
 
-			yield FormRequest(url + self.getRangeDate(startDate, endDate), callback = self.parse)
+			yield FormRequest(self.getRangeDate(url, startDate, endDate), callback = self.parse)
 
 
 	def parse(self, response):
