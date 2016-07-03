@@ -82,10 +82,10 @@ class MemectMysql():
         self.curDate = (datetime.now().date() - timedelta(3)).strftime("%Y-%m-%d")
         
     def connect(self):
-        logger.debug("user "+ self.user)
-        logger.debug("passwd "+ self.passwd)
-        logger.debug("db "+ self.dbname)
-        logger.debug("host "+ self.host)
+        logger.error("user "+ self.user)
+        logger.error("passwd "+ self.passwd)
+        logger.error("db "+ self.dbname)
+        logger.error("host "+ self.host)
 
         try:
             # Exceptions make it extremely difficult to clean up bu hand.
@@ -115,7 +115,7 @@ class MemectMysql():
                 result = self.cur.fetchAll()
                 print(result)
         else:
-            logger.warn("Warning: No data in table " + table)
+            logger.warn("No data in table " + table)
         return results
     
     def close(self):
@@ -130,7 +130,7 @@ def main():
         mm.connect()
         results = mm.query() 
     except Exception:
-        logger.error("Error: Fail to connect mysql!")
+        logger.error("Fail to connect mysql!")
         return
     finally:
         mm.close()        
