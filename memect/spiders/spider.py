@@ -3,8 +3,7 @@
 
 import logging
 import pickle
-import datetime
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 from scrapy.http import Request
 from scrapy.spiders import CrawlSpider, Rule
 from memect.items import MemectItem
@@ -42,15 +41,15 @@ class MlmemectSpider(CrawlSpider):
 		endDate = datetime.now().date()
 		startDate = None
 		if 'ml' in url:
-			startDate = datetime.datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
+			startDate = datetime.strptime(self.crawl_date[ML], "%Y-%m-%d").date()
 		elif 'py' in url:
-			startDate = datetime.datetime.strptime(self.crawl_date[PY], "%Y-%m-%d").date()
+			startDate = datetime.strptime(self.crawl_date[PY], "%Y-%m-%d").date()
 		elif 'app' in url:
-			startDate = datetime.datetime.strptime(self.crawl_date[APP], "%Y-%m-%d").date()	
+			startDate = datetime.strptime(self.crawl_date[APP], "%Y-%m-%d").date()	
 		elif 'bd' in url:
-			startDate = datetime.datetime.strptime(self.crawl_date[BD], "%Y-%m-%d").date()
+			startDate = datetime.strptime(self.crawl_date[BD], "%Y-%m-%d").date()
 		elif 'web' in url:
-			startDate = datetime.datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
+			startDate = datetime.strptime(self.crawl_date[WEB], "%Y-%m-%d").date()
 		return super.make_requests_from_url(url + getRangeDate(startDate, endDate))
 
 	def parse(self, response):
