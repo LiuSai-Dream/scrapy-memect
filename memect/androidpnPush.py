@@ -58,7 +58,7 @@ class Notification():
         self.driver = webdriver.PhantomJS('phantomjs')
         self.driver.get(self.url)
         
-        self.setNotification(sl.get(1), sl.get(6), sl.get(7))
+        self.setNotification(sl.get(1), sl.get(6), sl.get(8))
         self.send()
 
 
