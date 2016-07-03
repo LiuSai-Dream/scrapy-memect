@@ -106,6 +106,7 @@ class MemectMysql():
         results = []
             
         for table in tables:
+            logger.error("Current table " + table)
             logger.error(str(query, (table, self.curDate)))
             resultNum = self.cur.execute(query, (table, self.curDate))
             if (resultNum != 0):
@@ -125,7 +126,6 @@ def main():
     mm = MemectMysql()
     try:    
         mm.connect()
-        logger.error("begin to query")
         results = mm.query() 
     except Exception:
         logger.error("Fail to connect or query")
