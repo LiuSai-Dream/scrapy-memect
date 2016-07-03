@@ -16,7 +16,7 @@ class MlmemectSpider(CrawlSpider):
 	name = "memect"
 	allow_domain = ['ml.memect.com/', 'py.memect.com/', 'web.memect.com/', 'bd.memect.com/', 'app.memect.com/']
 	start_urls = ['http://ml.memect.com/', 'http://py.memect.com/', 'http://web.memect.com/', 'http://bd.memect.com/', 'http://app.memect.com/']
-	global crawl_date = None
+	crawl_date = None
 	crawl_date_file = "crawl_date.pkl"
 
 
@@ -53,6 +53,7 @@ class MlmemectSpider(CrawlSpider):
 
 
 	def getPickleDate(self):
+		global crawl_date
 		try:
 			with open(crawl_date_file, "rb") as handle:
 				crawl_date = pickle.load(handle)
@@ -73,6 +74,7 @@ class MlmemectSpider(CrawlSpider):
 
 	def need_crawl(self, siteType, curDate):
 		ret = False
+		global crawl_date
 		if siteType == ML :
 			if crawl_date[ML] > curDate:
 				ret = True 
