@@ -29,11 +29,11 @@ class Notification():
         
         title = self.driver.find_element_by_name("title")
         title.clear()
-        title.send_keys(str(titleText).decode("utf8"))
+        title.send_keys(str(titleText))
         
         message = self.driver.find_element_by_name("message")
         message.clear()
-        message.send_keys(str(messageText).decode("utf8"))
+        message.send_keys(str(messageText))
         
         uri = self.driver.find_element_by_name("uri")
         uri.clear()
