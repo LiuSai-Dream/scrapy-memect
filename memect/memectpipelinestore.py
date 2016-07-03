@@ -8,7 +8,7 @@
 from scrapy.exceptions import DropItem
 from scrapy.xlib.pydispatch import dispatcher
 from scrapy import signals
-from  memect.settings import MySqlConfig
+from memect.settings import MySqlConfig
 from memect.constants import *
 import MySQLdb
 import logging

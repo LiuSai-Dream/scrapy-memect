@@ -5,12 +5,11 @@ Created on Sun Jul 03 00:27:13 2016
 @author: user
 """
 
-
+from settings import MySqlConfig
+from datetime import datetime, timedelta
 from selenium import webdriver
 import logging
 import MySQLdb
-from  memect.settings import MySqlConfig
-from datetime import datetime, timedelta
 import gc
 import random
 
