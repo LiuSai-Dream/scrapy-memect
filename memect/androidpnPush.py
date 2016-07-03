@@ -48,6 +48,7 @@ class Notification():
     def sendNotification(self, results):
         sl = None
         if (len(results) <= 0):
+            logger.warn("All results is 0")
             sl = safeList([])
         else:
             index = random.randint(0, len(results))
@@ -112,6 +113,7 @@ class MemectMysql():
                 if (resultNum != 0):
                     result = self.cur.fetchall()
                     results.append(result)
+                    logger.error("Result is " + result)
                 else:
                     logger.warn("No data in table " + table)
         except MySQLdb.Error as e:
