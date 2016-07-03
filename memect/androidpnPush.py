@@ -115,7 +115,9 @@ class MemectMysql():
                 else:
                     logger.warn("No data in table " + table)
         except MySQLdb.Error as e:
-            logger.error("Fail to query; " + str(e))
+            logger.error("1 Fail to query; " + str(e))
+        except Exception as e:
+            logger.error("2 Fail to query; " + str(e))
         return results
     
     def close(self):
