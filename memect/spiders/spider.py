@@ -125,7 +125,7 @@ class MlmemectSpider(CrawlSpider):
 		# Determine weather to crawl by comparing date
 		if ( not self.need_crawl(siteType, curDate)):
 				logger.debug("Date " + curDate + " need not to crawl!")
-		return
+				return
 
 		# Setting filter date, for xpath selecting next
 		filterDate = "day_" + curDate
