@@ -165,14 +165,10 @@ class MlmemectSpider(CrawlSpider):
 				item['author_page_url'] = span[0].xpath('@href').extract_first()             	                           	  
 				item['author_name'] = span[0].xpath('@title').extract_first()
 
-				logger.debug("author_page_url " + item['author_page_url'])
-				logger.debug("author_name " + item['author_name'])
-
 			# Getting @{content_page_url}  
 			if ( len(span) >= 2 ):
 				item['content_page_url'] = span[1].xpath('@href') .extract_first()   
-				logger.debug("content_page_url " + item['content_page_url'])          
-
+				
 			# Getting @{pub_time}
 			item['pub_time']  = thread.xpath( './/span//span[contains(@class,"'+self.pub_time+'")]/text() ').extract_first()  
 		    
@@ -200,5 +196,4 @@ class MlmemectSpider(CrawlSpider):
 
 			# Getting @{content_img_url}
 			item['content_img_url'] = thread.xpath('.//div[contains(@class, "'+self.content_img_url +'")]/a/@href').extract_first()
-			logger.debug("content_img_url " + item['content_img_url'])  
 			yield item
