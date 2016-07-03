@@ -59,6 +59,8 @@ class MlmemectSpider(CrawlSpider):
 		if curDate == None:
 			logger.error("..............................................Fail to extract curDate!  The url is " + response.url + "..............................................")
 			return
+		if curDate < "2016-06-14" :
+			return
 
 		# Setting filter date, for xpath selecting next
 		filterDate = "day_" + curDate
