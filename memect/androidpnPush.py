@@ -82,6 +82,11 @@ class MemectMysql():
         self.curDate = (datetime.now().date() - timedelta(3)).strftime("%Y-%m-%d")
         
     def connect(self):
+        logger.debug("user "+ self.user)
+        logger.debug("passwd "+ self.passwd)
+        logger.debug("db "+ self.dbname)
+        logger.debug("host "+ self.host)
+
         try:
             # Exceptions make it extremely difficult to clean up bu hand.
             # Manually invok python garbage collector 
