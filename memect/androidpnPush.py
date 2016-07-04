@@ -43,7 +43,7 @@ class Notification():
     def send(self):
         submit = self.driver.find_element_by_xpath("//input[contains(@type,'submit')]")
         submit.submit()
-        self.driver.close()
+        
         
     def sendNotification(self, results):
         sl = None
@@ -61,6 +61,10 @@ class Notification():
         self.setNotification(sl.get(1), sl.get(6), sl.get(8))
         self.send()
 
+
+    def quit(self):
+        if self.driver:
+            self.driver.quit()
 
 class safeList(list):
     def get(self, index, default="No Value"):
@@ -138,10 +142,10 @@ def main():
         return
     finally:
         mm.close()        
-            
+    
     notification = Notification()
     notification.sendNotification(results)
-    
+    notification.quit()
 
 if __name__ == "__main__":
     main()
