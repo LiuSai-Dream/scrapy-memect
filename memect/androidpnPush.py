@@ -64,6 +64,7 @@ class Notification():
 
     def quit(self):
         if self.driver:
+            self.driver.close()
             self.driver.quit()
 
 class safeList(list):

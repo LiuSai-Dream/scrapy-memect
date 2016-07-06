@@ -62,13 +62,13 @@ class MlmemectSpider(CrawlSpider):
 		self.crawl_date = {ML:"2016-06-13", PY:"2016-06-13", WEB:"2016-06-13", BD:"2016-06-13", APP:"2016-06-13"}
 		with open(self.crawl_date_file, "rb") as handle:
 			self.crawl_date = pickle.load(handle)
-			logger.debug(".........Loading pickfile " + self.crawl_date_file + " successfully !  " + str(self.crawl_date) + ".........")
+			logger.debug(".........Loading pickfile " + self.crawl_date_file + " successfully !  .........")
 	
 
 	def savePickleDate(self):
 		with open(self.crawl_date_file, "wb") as handle:
 			pickle.dump(self.crawl_date, handle)
-			logger.debug(".........Dumping pickfile " + self.crawl_date_file + " successfully !  " + str(self.crawl_date) + ".........")
+			logger.debug(".........Dumping pickfile " + self.crawl_date_file + " successfully ! .........")
 		
 
 	def need_crawl(self, siteType, curDate):
