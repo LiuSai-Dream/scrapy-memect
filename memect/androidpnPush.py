@@ -146,8 +146,12 @@ def main():
         mm.close()        
     
     notification = Notification()
-    notification.sendNotification(results)
-    notification.quit()
+    try:    
+        notification.sendNotification(results)
+    except Exception:
+        logger.error("Notification error")
+    finally:
+        notification.quit()
 
 if __name__ == "__main__":
     main()
