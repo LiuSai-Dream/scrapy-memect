@@ -100,7 +100,7 @@ class MlmemectSpider(CrawlSpider):
 	def parse_content(self, response):
 		logger.debug("Parsing content: " + response.url)
 		if (response.status != 200):
-			logger.error(".........Error: Fail to fetch url!  " + response.url +".........")
+			logger.debug(".........Error: Fail to fetch url!  " + response.url +" response status not 200.........")
 			return
 
 		if 'ml' in response.request.url:
