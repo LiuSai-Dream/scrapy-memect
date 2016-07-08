@@ -85,7 +85,8 @@ class MemectMysql():
         self.use_unicode = True
         self.conn = None
         self.cur = None
-        self.curDate = datetime.now().date().strftime("%Y-%m-%d")
+        self.curData = random.randint(1,11500)
+        # self.curData = datetime.now().date().strftime("%Y-%m-%d")
         # self.curDate = (datetime.now().date() - timedelta(2)).strftime("%Y-%m-%d")
         
     def connect(self):
@@ -113,7 +114,7 @@ class MemectMysql():
         
         try:
             for table in tables:
-                query = "SELECT * FROM " + table + " WHERE pub_time LIKE '" + self.curDate + "%'"
+                query = "SELECT * FROM " + table + " WHERE id LIKE '" + self.curData + "%'"
 
                 resultNum = self.cur.execute(query)
                 if (resultNum != 0):
