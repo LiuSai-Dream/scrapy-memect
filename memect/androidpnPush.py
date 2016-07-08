@@ -52,7 +52,8 @@ class Notification():
             sl = safeList([])
         else:
             index = random.randint(0, len(results))
-            sl = safeList(results[index])        
+            sl = safeList(results[index])   
+            logger.error("query result : "+ results[index])    
         
         # Trigger an request
         self.driver = webdriver.PhantomJS('phantomjs')
