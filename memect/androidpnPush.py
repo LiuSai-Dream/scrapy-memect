@@ -115,7 +115,7 @@ class MemectMysql():
         try:
             for table in tables:
                 # query = "SELECT * FROM " + table + " WHERE id LIKE '" + self.curData + "%'"
-                query = "SELECT * FROM " + table + " WHERE id=" + self.curData;
+                query = "SELECT * FROM " + table + " WHERE id=" + str(self.curData)
                 resultNum = self.cur.execute(query)
                 if (resultNum != 0):
                     result = self.cur.fetchall()
